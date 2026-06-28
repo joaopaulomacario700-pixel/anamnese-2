@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anamnese Pré-Avaliação — New Life Academy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+  :root {
+    --verde-esc:  #1A5C3A;
+    --verde-med:  #2E7D4F;
+    --verde-clar: #4CAF78;
+    --verde-bg:   #F0F7F3;
+    --verde-soft: #D6ECD2;
+    --branco:     #FFFFFF;
+    --cinza-1:    #F7F8FA;
+    --cinza-2:    #E8ECEE;
+    --cinza-text: #5A6872;
+    --text-esc:   #1C2B22;
+    --accent:     #A8D5B5;
+    --warn:       #E07B39;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--verde-bg);
+    color: var(--text-esc);
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  /* ── HERO ────────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(150deg, var(--verde-esc) 0%, var(--verde-med) 60%, #3D9E68 100%);
+    color: #fff;
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 6vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.85;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .hero-badge {
+    display: inline-block;
+    margin-top: 24px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PROGRESSO ───────────────────────────────────────────── */
+  .progress-bar-wrap {
+    background: var(--verde-esc);
+    padding: 0 24px 20px;
+    text-align: center;
+  }
+  .progress-track {
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    border-radius: 100px;
+    height: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--verde-clar);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  /* ── CONTAINER ───────────────────────────────────────────── */
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* ── SEÇÕES ──────────────────────────────────────────────── */
+  .section {
+    background: var(--branco);
+    border-radius: 16px;
+    margin-top: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,92,58,0.08);
+  }
+  .section-header {
+    background: linear-gradient(90deg, var(--verde-esc), var(--verde-med));
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .section-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── CAMPOS ──────────────────────────────────────────────── */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field-group.row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .field-group.row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--verde-esc);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  label span.hint {
+    font-weight: 400;
+    color: var(--cinza-text);
+    font-size: 12px;
+  }
+  label.required::after {
+    content: ' *';
+    color: var(--warn);
+    font-weight: 700;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    border: 1.5px solid var(--cinza-2);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-esc);
+    background: var(--cinza-1);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--verde-med);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(46,125,79,0.12);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231A5C3A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 38px;
+    cursor: pointer;
+  }
+
+  /* ── RADIO / CHECKBOX ────────────────────────────────────── */
+  .options-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--verde-esc);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .options-label.required::after {
+    content: ' *';
+    color: var(--warn);
+    font-weight: 700;
+  }
+  .radio-group, .check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .radio-group label, .check-group label {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    background: var(--cinza-1);
+    border: 1.5px solid var(--cinza-2);
+    border-radius: 100px;
+    padding: 7px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-esc);
+    transition: all 0.18s;
+  }
+  .radio-group label::after, .check-group label::after { display: none; }
+  .radio-group input, .check-group input { display: none; }
+  .radio-group label:has(input:checked),
+  .check-group label:has(input:checked) {
+    background: var(--verde-soft);
+    border-color: var(--verde-med);
+    color: var(--verde-esc);
+    font-weight: 600;
+  }
+
+  /* ── ESCALA DE DOR ───────────────────────────────────────── */
+  .pain-scale {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .pain-scale label {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 44px;
+    min-height: 52px;
+    border-radius: 10px;
+    background: var(--cinza-1);
+    border: 1.5px solid var(--cinza-2);
+    padding: 6px 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.18s;
+  }
+  .pain-scale label::after { display: none; }
+  .pain-scale input { display: none; }
+  .pain-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .pain-scale label:nth-child(1) .pain-dot { background: #4CAF50; }
+  .pain-scale label:nth-child(2) .pain-dot { background: #8BC34A; }
+  .pain-scale label:nth-child(3) .pain-dot { background: #CDDC39; }
+  .pain-scale label:nth-child(4) .pain-dot { background: #FFEB3B; }
+  .pain-scale label:nth-child(5) .pain-dot { background: #FFC107; }
+  .pain-scale label:nth-child(6) .pain-dot { background: #FF9800; }
+  .pain-scale label:nth-child(7) .pain-dot { background: #FF7043; }
+  .pain-scale label:nth-child(8) .pain-dot { background: #F4511E; }
+  .pain-scale label:nth-child(9) .pain-dot { background: #E53935; }
+  .pain-scale label:nth-child(10) .pain-dot { background: #B71C1C; }
+  .pain-scale label:nth-child(11) .pain-dot { background: #7B0000; }
+  .pain-scale label:has(input:checked) {
+    border-color: var(--verde-med);
+    background: var(--verde-soft);
+    transform: scale(1.08);
+  }
+
+  /* ── CAMPO CONDICIONAL ───────────────────────────────────── */
+  .conditional {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+    padding: 16px;
+    background: var(--verde-bg);
+    border-radius: 10px;
+    border-left: 3px solid var(--verde-clar);
+  }
+  .conditional.visible { display: flex; }
+
+  /* ── DIVISOR ─────────────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: var(--cinza-2);
+    margin: 4px 0;
+  }
+
+  /* ── BOTÃO SUBMIT ────────────────────────────────────────── */
+  .submit-wrap {
+    max-width: 640px;
+    margin: 28px auto 0;
+    padding: 0 16px;
+  }
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--verde-esc), var(--verde-clar));
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 18px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 20px rgba(26,92,58,0.3);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,92,58,0.38); }
+  .btn-submit:active { transform: translateY(0); }
+
+  /* ── TELA DE SUCESSO ─────────────────────────────────────── */
+  #sucesso {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .sucesso-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--verde-soft);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    margin: 0 auto 24px;
+    animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes pop { from { transform: scale(0); opacity:0; } to { transform: scale(1); opacity:1; } }
+  #sucesso h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--verde-esc);
+    margin-bottom: 12px;
+  }
+  #sucesso p { color: var(--cinza-text); line-height: 1.7; font-size: 15px; }
+
+  /* ── RESULTADO PARA COPIAR ───────────────────────────────── */
+  #resultado-wrap {
+    display: none;
+    max-width: 640px;
+    margin: 20px auto 0;
+    padding: 0 16px;
+  }
+  .resultado-box {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,92,58,0.08);
+  }
+  .resultado-header {
+    background: linear-gradient(90deg, var(--verde-esc), var(--verde-med));
+    padding: 14px 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn-copiar {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-copiar:hover { background: rgba(255,255,255,0.35); }
+  #resultado-texto {
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-esc);
+    white-space: pre-wrap;
+    font-family: 'Inter', sans-serif;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .nota-final {
+    max-width: 640px;
+    margin: 16px auto 0;
+    padding: 0 16px;
+    font-size: 12px;
+    color: var(--cinza-text);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .nota-final a { color: var(--verde-med); }
+
+  /* ── NOTA OBRIGATÓRIO ────────────────────────────────────── */
+  .obrigatorio-nota {
+    max-width: 640px;
+    margin: 12px auto 0;
+    padding: 0 16px;
+    font-size: 12px;
+    color: var(--cinza-text);
+  }
+
+  @media (max-width: 480px) {
+    .field-group.row-2 { grid-template-columns: 1fr; }
+    .field-group.row-3 { grid-template-columns: 1fr 1fr; }
+    .pain-scale label { width: 38px; font-size: 12px; }
+    .section-body { padding: 18px; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-logo">New Life Academy · Pilates</div>
+  <h1>Anamnese<br>Pré-Avaliação</h1>
+  <p>Preencha com calma antes da sua primeira sessão. Isso nos ajuda a preparar a avaliação ideal para o seu perfil.</p>
+  <div class="hero-badge">⏱ Leva cerca de 5 minutos</div>
+</div>
+
+<!-- ── BARRA DE PROGRESSO ── -->
+<div class="progress-bar-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">Preencha os campos para começar</div>
+</div>
+
+<div class="container">
+  <p class="obrigatorio-nota">Campos com <span style="color:var(--warn);font-weight:700">*</span> são obrigatórios.</p>
+</div>
+
+<form id="anamnese" novalidate>
+
+<!-- ══ 1. DADOS PESSOAIS ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">👤</div>
+    <div class="section-title">Dados Pessoais</div>
+  </div>
+  <div class="section-body">
+
+    <label class="required">Nome completo
+      <input type="text" name="nome" placeholder="Como prefere ser chamado(a)?" required>
+    </label>
+
+    <div class="field-group row-2">
+      <label class="required">Data de nascimento
+        <input type="date" name="nascimento" required>
+      </label>
+      <label class="required">Sexo
+        <select name="sexo" required>
+          <option value="">Selecione</option>
+          <option>Feminino</option>
+          <option>Masculino</option>
+          <option>Prefiro não informar</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="field-group row-2">
+      <label class="required">Telefone / WhatsApp
+        <input type="tel" name="telefone" placeholder="(00) 00000-0000" required>
+      </label>
+      <label>E-mail
+        <input type="email" name="email" placeholder="seu@email.com">
+      </label>
+    </div>
+
+    <label>Profissão / Ocupação
+      <input type="text" name="profissao" placeholder="Ex: professora, motorista, escritório...">
+    </label>
+
+    <label>Como ficou sabendo da New Life Academy?
+      <select name="indicacao">
+        <option value="">Selecione</option>
+        <option>Indicação de amigo / familiar</option>
+        <option>Instagram / Redes sociais</option>
+        <option>Google</option>
+        <option>Indicação médica</option>
+        <option>Já conhecia o estúdio</option>
+        <option>Outro</option>
+      </select>
+    </label>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ 2. OBJETIVO ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div class="section-title">Objetivo com o Pilates</div>
+  </div>
+  <div class="section-body">
+
+    <div>
+      <span class="options-label required">Qual é o seu objetivo principal?</span>
+      <div class="check-group">
+        <label><input type="checkbox" name="objetivo" value="Alívio de dores"> Alívio de dores</label>
+        <label><input type="checkbox" name="objetivo" value="Condicionamento físico"> Condicionamento físico</label>
+        <label><input type="checkbox" name="objetivo" value="Emagrecimento"> Emagrecimento</label>
+        <label><input type="checkbox" name="objetivo" value="Postura"> Melhora de postura</label>
+        <label><input type="checkbox" name="objetivo" value="Reabilitação"> Reabilitação</label>
+        <label><input type="checkbox" name="objetivo" value="Flexibilidade"> Flexibilidade</label>
+        <label><input type="checkbox" name="objetivo" value="Qualidade de vida"> Qualidade de vida</label>
+        <label><input type="checkbox" name="objetivo" value="Equilíbrio e coordenação"> Equilíbrio / coordenação</label>
+        <label><input type="checkbox" name="objetivo" value="Relaxamento"> Relaxamento / bem-estar</label>
+      </div>
+    </div>
+
+    <label>Descreva com suas palavras o que espera do Pilates
+      <textarea name="expectativa" placeholder="Fique à vontade para detalhar..."></textarea>
+    </label>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ 3. SAÚDE GERAL ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🏥</div>
+    <div class="section-title">Saúde Geral</div>
+  </div>
+  <div class="section-body">
+
+    <!-- Doenças -->
+    <div>
+      <span class="options-label">Você tem ou já teve alguma dessas condições?</span>
+      <div class="check-group">
+        <label><input type="checkbox" name="doenca" value="Hipertensão"> Hipertensão</label>
+        <label><input type="checkbox" name="doenca" value="Diabetes"> Diabetes</label>
+        <label><input type="checkbox" name="doenca" value="Problemas cardíacos"> Problemas cardíacos</label>
+        <label><input type="checkbox" name="doenca" value="Osteoporose"> Osteoporose</label>
+        <label><input type="checkbox" name="doenca" value="Hérnia de disco"> Hérnia de disco</label>
+        <label><input type="checkbox" name="doenca" value="Escoliose"> Escoliose</label>
+        <label><input type="checkbox" name="doenca" value="Artrite/artrose"> Artrite / artrose</label>
+        <label><input type="checkbox" name="doenca" value="Fibromialgia"> Fibromialgia</label>
+        <label><input type="checkbox" name="doenca" value="Ansiedade/depressão"> Ansiedade / depressão</label>
+        <label><input type="checkbox" name="doenca" value="Nenhuma das anteriores"> Nenhuma das anteriores</label>
+      </div>
+    </div>
+
+    <label>Outras condições de saúde não listadas acima
+      <input type="text" name="outras_doencas" placeholder="Descreva se houver">
+    </label>
+
+    <div class="divider"></div>
+
+    <!-- Cirurgias -->
+    <div>
+      <span class="options-label required">Já realizou alguma cirurgia?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="cirurgia" value="Não" required> Não</label>
+        <label><input type="radio" name="cirurgia" value="Sim"> Sim</label>
+      </div>
+    </div>
+    <div class="conditional" id="cond-cirurgia">
+      <label>Qual cirurgia? Quando foi?
+        <input type="text" name="cirurgia_detalhe" placeholder="Ex: joelho, 2021">
+      </label>
+      <label>Ainda tem limitações por causa dela?
+        <input type="text" name="cirurgia_limitacao" placeholder="Ex: não consigo dobrar totalmente o joelho">
+      </label>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Medicamentos -->
+    <div>
+      <span class="options-label required">Usa algum medicamento de forma contínua?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="medicamento" value="Não" required> Não</label>
+        <label><input type="radio" name="medicamento" value="Sim"> Sim</label>
+      </div>
+    </div>
+    <div class="conditional" id="cond-medicamento">
+      <label>Quais medicamentos?
+        <input type="text" name="medicamento_detalhe" placeholder="Ex: losartana, metformina...">
+      </label>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Gestante -->
+    <div>
+      <span class="options-label">Está grávida ou em período pós-parto?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="gestante" value="Não"> Não</label>
+        <label><input type="radio" name="gestante" value="Grávida"> Grávida</label>
+        <label><input type="radio" name="gestante" value="Pós-parto"> Pós-parto</label>
+      </div>
+    </div>
+    <div class="conditional" id="cond-gestante">
+      <label>Quantas semanas / meses?
+        <input type="text" name="gestante_detalhe" placeholder="Ex: 20 semanas, 3 meses pós-parto">
+      </label>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ 4. DOR ATUAL ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🔴</div>
+    <div class="section-title">Dor Atual</div>
+  </div>
+  <div class="section-body">
+
+    <div>
+      <span class="options-label required">Tem alguma dor no momento?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="tem_dor" value="Não" required> Não tenho dor</label>
+        <label><input type="radio" name="tem_dor" value="Sim"> Tenho dor</label>
+      </div>
+    </div>
+
+    <div class="conditional" id="cond-dor">
+      <label>Onde está a dor? (pode marcar mais de um)
+        <div class="check-group" style="margin-top:6px">
+          <label><input type="checkbox" name="local_dor" value="Cervical"> Pescoço / cervical</label>
+          <label><input type="checkbox" name="local_dor" value="Ombro D"> Ombro direito</label>
+          <label><input type="checkbox" name="local_dor" value="Ombro E"> Ombro esquerdo</label>
+          <label><input type="checkbox" name="local_dor" value="Coluna torácica"> Coluna torácica</label>
+          <label><input type="checkbox" name="local_dor" value="Lombar"> Lombar / costas baixas</label>
+          <label><input type="checkbox" name="local_dor" value="Quadril D"> Quadril direito</label>
+          <label><input type="checkbox" name="local_dor" value="Quadril E"> Quadril esquerdo</label>
+          <label><input type="checkbox" name="local_dor" value="Joelho D"> Joelho direito</label>
+          <label><input type="checkbox" name="local_dor" value="Joelho E"> Joelho esquerdo</label>
+          <label><input type="checkbox" name="local_dor" value="Tornozelo/pé"> Tornozelo / pé</label>
+        </div>
+      </label>
+
+      <div>
+        <span class="options-label">Intensidade da dor (0 = sem dor · 10 = dor máxima)</span>
+        <div class="pain-scale">
+          <label><input type="radio" name="intensidade_dor" value="0"><div class="pain-dot"></div>0</label>
+          <label><input type="radio" name="intensidade_dor" value="1"><div class="pain-dot"></div>1</label>
+          <label><input type="radio" name="intensidade_dor" value="2"><div class="pain-dot"></div>2</label>
+          <label><input type="radio" name="intensidade_dor" value="3"><div class="pain-dot"></div>3</label>
+          <label><input type="radio" name="intensidade_dor" value="4"><div class="pain-dot"></div>4</label>
+          <label><input type="radio" name="intensidade_dor" value="5"><div class="pain-dot"></div>5</label>
+          <label><input type="radio" name="intensidade_dor" value="6"><div class="pain-dot"></div>6</label>
+          <label><input type="radio" name="intensidade_dor" value="7"><div class="pain-dot"></div>7</label>
+          <label><input type="radio" name="intensidade_dor" value="8"><div class="pain-dot"></div>8</label>
+          <label><input type="radio" name="intensidade_dor" value="9"><div class="pain-dot"></div>9</label>
+          <label><input type="radio" name="intensidade_dor" value="10"><div class="pain-dot"></div>10</label>
+        </div>
+      </div>
+
+      <div>
+        <span class="options-label">A dor é:</span>
+        <div class="radio-group">
+          <label><input type="radio" name="tipo_dor" value="Constante"> Constante</label>
+          <label><input type="radio" name="tipo_dor" value="Intermitente"> Vai e volta</label>
+          <label><input type="radio" name="tipo_dor" value="Só ao movimento"> Só ao se mover</label>
+          <label><input type="radio" name="tipo_dor" value="Só em repouso"> Só em repouso</label>
+        </div>
+      </div>
+
+      <label>O que piora a dor?
+        <input type="text" name="piora_dor" placeholder="Ex: ficar sentado muito tempo, caminhar...">
+      </label>
+      <label>O que melhora a dor?
+        <input type="text" name="melhora_dor" placeholder="Ex: alongar, deitar, calor...">
+      </label>
+      <label>Há quanto tempo tem essa dor?
+        <input type="text" name="tempo_dor" placeholder="Ex: 2 anos, desde 2020...">
+      </label>
+      <label>Já foi avaliado por algum profissional?
+        <input type="text" name="profissional_dor" placeholder="Ex: ortopedista — diagnóstico de hérnia L4-L5">
+      </label>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ 5. ATIVIDADE FÍSICA ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🏃</div>
+    <div class="section-title">Atividade Física</div>
+  </div>
+  <div class="section-body">
+
+    <div>
+      <span class="options-label required">Pratica alguma atividade física atualmente?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="ativo" value="Não" required> Não pratico</label>
+        <label><input type="radio" name="ativo" value="Sim"> Sim, pratico</label>
+      </div>
+    </div>
+
+    <div class="conditional" id="cond-ativo">
+      <label>Qual(is) atividade(s)?
+        <input type="text" name="atividade_atual" placeholder="Ex: caminhada, musculação, natação...">
+      </label>
+      <label>Frequência semanal e duração
+        <input type="text" name="frequencia_atividade" placeholder="Ex: 3x por semana, 45 min cada">
+      </label>
+    </div>
+
+    <div>
+      <span class="options-label">Já praticou Pilates antes?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="pilates_antes" value="Não"> Nunca pratiquei</label>
+        <label><input type="radio" name="pilates_antes" value="Sim, há mais de 1 ano"> Sim, há mais de 1 ano</label>
+        <label><input type="radio" name="pilates_antes" value="Sim, brevemente"> Sim, brevemente</label>
+      </div>
+    </div>
+
+    <div>
+      <span class="options-label required">Como você descreveria seu condicionamento atual?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="condicionamento" value="Sedentário" required> Sedentário(a)</label>
+        <label><input type="radio" name="condicionamento" value="Pouco ativo"> Pouco ativo(a)</label>
+        <label><input type="radio" name="condicionamento" value="Moderadamente ativo"> Moderadamente ativo(a)</label>
+        <label><input type="radio" name="condicionamento" value="Bem condicionado"> Bem condicionado(a)</label>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ 6. HÁBITOS DE VIDA ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🌿</div>
+    <div class="section-title">Hábitos de Vida</div>
+  </div>
+  <div class="section-body">
+
+    <div>
+      <span class="options-label">Como você descreveria sua qualidade de sono?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="sono" value="Ótimo"> Ótimo</label>
+        <label><input type="radio" name="sono" value="Bom"> Bom</label>
+        <label><input type="radio" name="sono" value="Regular"> Regular</label>
+        <label><input type="radio" name="sono" value="Ruim"> Ruim</label>
+      </div>
+    </div>
+
+    <div>
+      <span class="options-label">Nível de estresse no dia a dia?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="estresse" value="Baixo"> Baixo</label>
+        <label><input type="radio" name="estresse" value="Moderado"> Moderado</label>
+        <label><input type="radio" name="estresse" value="Alto"> Alto</label>
+        <label><input type="radio" name="estresse" value="Muito alto"> Muito alto</label>
+      </div>
+    </div>
+
+    <div>
+      <span class="options-label">Qual é a natureza do seu trabalho principal?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="trabalho" value="Sentado a maior parte do dia"> Sentado(a) o dia todo</label>
+        <label><input type="radio" name="trabalho" value="Em pé a maior parte do dia"> Em pé o dia todo</label>
+        <label><input type="radio" name="trabalho" value="Misto"> Misto</label>
+        <label><input type="radio" name="trabalho" value="Trabalho físico intenso"> Trabalho físico intenso</label>
+        <label><input type="radio" name="trabalho" value="Não trabalho / aposentado"> Não trabalho / aposentado(a)</label>
+      </div>
+    </div>
+
+    <label>Ingestão diária de água (em litros, aproximado)
+      <select name="agua">
+        <option value="">Selecione</option>
+        <option>Menos de 1 litro</option>
+        <option>Entre 1 e 1,5 litro</option>
+        <option>Entre 1,5 e 2 litros</option>
+        <option>Mais de 2 litros</option>
+      </select>
+    </label>
+
+  </div>
+</div>
+</div>
+
+<!-- ══ 7. RESTRIÇÕES E OBSERVAÇÕES ══ -->
+<div class="container">
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <div class="section-title">Restrições e Observações</div>
+  </div>
+  <div class="section-body">
+
+    <div>
+      <span class="options-label">Usa órtese, prótese ou tem algum implante?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="ortese" value="Não"> Não</label>
+        <label><input type="radio" name="ortese" value="Sim"> Sim</label>
+      </div>
+    </div>
+    <div class="conditional" id="cond-ortese">
+      <label>Qual e em qual região?
+        <input type="text" name="ortese_detalhe" placeholder="Ex: prótese no quadril direito, marca-passo...">
+      </label>
+    </div>
+
+    <div>
+      <span class="options-label">Está em acompanhamento com algum profissional de saúde?</span>
+      <div class="radio-group">
+        <label><input type="radio" name="acompanhamento" value="Não"> Não</label>
+        <label><input type="radio" name="acompanhamento" value="Sim"> Sim</label>
+      </div>
+    </div>
+    <div class="conditional" id="cond-acompanhamento">
+      <label>Qual profissional e para quê?
+        <input type="text" name="acompanhamento_detalhe" placeholder="Ex: fisioterapeuta para lombar, cardiologista...">
+      </label>
+    </div>
+
+    <label>Há algo que gostaria que o(a) instrutor(a) soubesse antes da avaliação?
+      <textarea name="obs_final" placeholder="Pode contar aqui qualquer coisa que ache importante..."></textarea>
+    </label>
+
+  </div>
+</div>
+</div>
+
+<!-- ── BOTÃO ENVIAR ── -->
+<div class="submit-wrap">
+  <button type="submit" class="btn-submit">✅ Enviar minha anamnese</button>
+</div>
+
+</form>
+
+<!-- ── TELA DE SUCESSO ── -->
+<div id="sucesso">
+  <div class="sucesso-icon">🎉</div>
+  <h2>Anamnese enviada!</h2>
+  <p>Obrigado(a) por preencher. Suas informações foram registradas com sucesso e o(a) instrutor(a) já pode visualizá-las abaixo.<br><br>Até a sua avaliação! 💪</p>
+</div>
+
+<!-- ── RESULTADO PARA COPIAR ── -->
+<div id="resultado-wrap">
+  <div class="resultado-box">
+    <div class="resultado-header">
+      📋 Respostas do aluno — copie para o Excel
+      <button class="btn-copiar" onclick="copiarResultado()">Copiar tudo</button>
+    </div>
+    <div id="resultado-texto"></div>
+  </div>
+</div>
+<p class="nota-final" id="nota-final" style="display:none">
+  💡 <strong>Instruções para você:</strong> copie o texto acima e cole na aba <em>Anamnese</em> do Excel como referência — ou use para preencher os campos manualmente. As fotos e a avaliação física são feitas presencialmente.
+</p>
+
+<script>
+// ── Campos condicionais ─────────────────────────────────────────────────────
+function toggleConditional(radioName, condId, triggerValue) {
+  const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+  const cond = document.getElementById(condId);
+  radios.forEach(r => {
+    r.addEventListener('change', () => {
+      cond.classList.toggle('visible', r.value === triggerValue && r.checked);
+    });
+  });
+}
+
+toggleConditional('cirurgia',        'cond-cirurgia',       'Sim');
+toggleConditional('medicamento',     'cond-medicamento',    'Sim');
+toggleConditional('tem_dor',         'cond-dor',            'Sim');
+toggleConditional('ativo',           'cond-ativo',          'Sim');
+toggleConditional('ortese',          'cond-ortese',         'Sim');
+toggleConditional('acompanhamento',  'cond-acompanhamento', 'Sim');
+
+// Gestante especial (radio mas 2 valores)
+document.querySelectorAll('input[name="gestante"]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.getElementById('cond-gestante').classList.toggle(
+      'visible', r.value !== 'Não' && r.checked
+    );
+  });
+});
+
+// ── Barra de progresso ──────────────────────────────────────────────────────
+function atualizarProgresso() {
+  const required = document.querySelectorAll('[required]');
+  let filled = 0;
+  required.forEach(el => {
+    if (el.type === 'radio') {
+      const group = document.querySelectorAll(`input[name="${el.name}"]:checked`);
+      if (group.length > 0) filled++;
+    } else if (el.value.trim() !== '') {
+      filled++;
+    }
+  });
+  // Contagem única de grupos de radio obrigatórios
+  const radioNames = new Set();
+  required.forEach(el => { if (el.type === 'radio') radioNames.add(el.name); });
+  const totalUnique = (required.length - document.querySelectorAll('[required][type="radio"]').length) + radioNames.size;
+  const filledRadios = [...radioNames].filter(n => document.querySelector(`input[name="${n}"]:checked`)).length;
+  const filledInputs = [...required].filter(el => el.type !== 'radio' && el.value.trim() !== '').length;
+  const total = totalUnique;
+  const done = filledInputs + filledRadios;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent =
+    pct === 100 ? '✅ Tudo preenchido! Clique em enviar.' :
+    pct === 0   ? 'Preencha os campos para começar' :
+                  `${pct}% preenchido`;
+}
+
+document.getElementById('anamnese').addEventListener('input', atualizarProgresso);
+document.getElementById('anamnese').addEventListener('change', atualizarProgresso);
+
+// ── Montar resultado textual ────────────────────────────────────────────────
+function getChecked(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
+    .map(el => el.value).join(', ') || '—';
+}
+function getVal(name) {
+  const el = document.querySelector(`[name="${name}"]`);
+  return el ? (el.value.trim() || '—') : '—';
+}
+function getRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : '—';
+}
+
+function montarResultado() {
+  const linhas = [
+    '══════════════════════════════════════════',
+    '  ANAMNESE PRÉ-AVALIAÇÃO — NEW LIFE ACADEMY',
+    '══════════════════════════════════════════',
+    '',
+    '─── DADOS PESSOAIS ───',
+    `Nome:              ${getVal('nome')}`,
+    `Nascimento:        ${getVal('nascimento')}`,
+    `Sexo:              ${getRadio('sexo')}`,
+    `Telefone:          ${getVal('telefone')}`,
+    `E-mail:            ${getVal('email')}`,
+    `Profissão:         ${getVal('profissao')}`,
+    `Como conheceu:     ${getRadio('indicacao')}`,
+    '',
+    '─── OBJETIVO ───',
+    `Objetivos:         ${getChecked('objetivo')}`,
+    `Expectativa:       ${getVal('expectativa')}`,
+    '',
+    '─── SAÚDE GERAL ───',
+    `Condições de saúde: ${getChecked('doenca')}`,
+    `Outras condições:  ${getVal('outras_doencas')}`,
+    `Cirurgia:          ${getRadio('cirurgia')}`,
+    `Detalhe cirurgia:  ${getVal('cirurgia_detalhe')}`,
+    `Limitação pós-cir: ${getVal('cirurgia_limitacao')}`,
+    `Medicamentos:      ${getRadio('medicamento')}`,
+    `Quais medicamentos:${getVal('medicamento_detalhe')}`,
+    `Gestante/pós-parto:${getRadio('gestante')}`,
+    `Detalhe gestação:  ${getVal('gestante_detalhe')}`,
+    '',
+    '─── DOR ATUAL ───',
+    `Tem dor:           ${getRadio('tem_dor')}`,
+    `Local da dor:      ${getChecked('local_dor')}`,
+    `Intensidade (0-10):${getRadio('intensidade_dor')}`,
+    `Tipo de dor:       ${getRadio('tipo_dor')}`,
+    `Piora com:         ${getVal('piora_dor')}`,
+    `Melhora com:       ${getVal('melhora_dor')}`,
+    `Tempo de dor:      ${getVal('tempo_dor')}`,
+    `Avaliação prévia:  ${getVal('profissional_dor')}`,
+    '',
+    '─── ATIVIDADE FÍSICA ───',
+    `Ativo atualmente:  ${getRadio('ativo')}`,
+    `Qual atividade:    ${getVal('atividade_atual')}`,
+    `Frequência:        ${getVal('frequencia_atividade')}`,
+    `Pilates antes:     ${getRadio('pilates_antes')}`,
+    `Condicionamento:   ${getRadio('condicionamento')}`,
+    '',
+    '─── HÁBITOS DE VIDA ───',
+    `Qualidade do sono: ${getRadio('sono')}`,
+    `Nível de estresse: ${getRadio('estresse')}`,
+    `Tipo de trabalho:  ${getRadio('trabalho')}`,
+    `Ingestão de água:  ${getVal('agua')}`,
+    '',
+    '─── RESTRIÇÕES ───',
+    `Órtese/prótese:    ${getRadio('ortese')}`,
+    `Detalhe órtese:    ${getVal('ortese_detalhe')}`,
+    `Acompanhamento:    ${getRadio('acompanhamento')}`,
+    `Com quem:          ${getVal('acompanhamento_detalhe')}`,
+    `Observações finais:${getVal('obs_final')}`,
+    '',
+    '══════════════════════════════════════════',
+  ];
+  return linhas.join('\n');
+}
+
+// ── Submit ──────────────────────────────────────────────────────────────────
+document.getElementById('anamnese').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Validação básica
+  let ok = true;
+  document.querySelectorAll('[required]').forEach(el => {
+    if (el.type === 'radio') {
+      const group = document.querySelectorAll(`input[name="${el.name}"]:checked`);
+      if (group.length === 0) ok = false;
+    } else if (!el.value.trim()) {
+      ok = false;
+    }
+  });
+
+  if (!ok) {
+    alert('Por favor, preencha todos os campos obrigatórios (marcados com *) antes de enviar.');
+    return;
+  }
+
+  // Oculta form, mostra sucesso e resultado
+  document.getElementById('anamnese').style.display = 'none';
+  document.querySelector('.progress-bar-wrap').style.display = 'none';
+  document.querySelector('.obrigatorio-nota').style.display = 'none';
+  document.getElementById('sucesso').style.display = 'block';
+
+  const texto = montarResultado();
+  document.getElementById('resultado-texto').textContent = texto;
+  document.getElementById('resultado-wrap').style.display = 'block';
+  document.getElementById('nota-final').style.display = 'block';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Copiar resultado ────────────────────────────────────────────────────────
+function copiarResultado() {
+  const texto = document.getElementById('resultado-texto').textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    const btn = document.querySelector('.btn-copiar');
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => btn.textContent = 'Copiar tudo', 2000);
+  });
+}
+</script>
+</body>
+</html>
